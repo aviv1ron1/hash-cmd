@@ -31,7 +31,7 @@ var makeAction = (hashType) => {
         }
         if (program.input) {
             if (checkFile(program.input)) {
-                if (data) {
+                if (data.length > 0 && data[0] != '') {
                     console.error("cannot have both file input and data together");
                     process.exit(1);
                 }
@@ -48,6 +48,11 @@ var makeAction = (hashType) => {
                 console.log("data is required");
                 process.exit(1);
             }
+            if (Array.isArray(data)) {
+                verb("data is array ", data);
+                data.splice(1, 1);
+                data = data.join(" ");
+            }
             verb("calculating hash ", hashType, " of: '", data, "'");
             hash.update(data);
             console.log(hash.digest('hex'));
@@ -57,30 +62,24 @@ var makeAction = (hashType) => {
 }
 
 program
-    .description('hash creation')
+    .description('calculate a hash value of a string or file. <hash> is the hash function name like "md5", "sha1", "sha256"')
     .option("-i, --input <file>", "read data from file")
-    .option("-v, --verbose", "verbose mode");
-
-program
-    .command('md5 [data]')
-    .description("md5")
-    .action(makeAction('md5'));
-
-program
-    .command('sha1 [data]')
-    .description("sha1")
-    .action(makeAction('sha1'));
-
-program
-    .command('sha2 [data]')
-    .description("sha256")
-    .action(makeAction('sha256'));
-
-program
-    .command('*')
-    .description("you specify the hash function name")
-    .action((h, ...data) => {
-        makeAction(h)(data.slice(0, data.length - 1).join(" "));
+    .option("-v, --verbose", "verbose mode")
+    .arguments('<hash> [data]')
+    .action((h, data) => {
+        makeAction(h)(data); //.slice(0, data.length - 1).join(" "));
+    }).on('--help', () => {
+        console.log('');
+        console.log('  Examples:');
+        console.log('');
+        console.log('    calculate md5 of "abc"                      $ hash md5 abc');
+        console.log('    calculate sha1 of "a b c"                   $ hash sha1 "a b c"');
+        console.log('    calculate sha256 of the file c:\\somefile    $ hash -i c:\\somefile sha256');
+        console.log('');
     });
 
 program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+    program.outputHelp();
+}
