@@ -1,6 +1,6 @@
 {
   "name": "hash-cmd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "command line tool for calculating hash values of strings or files",
   "main": "hash.js",
   "scripts": {
@@ -14,5 +14,7 @@
   "dependencies": {
     "commander": "^2.11.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": "github:aviv1ron1/hash-cmd",
+  "bugs": "https://github.com/aviv1ron1/hash-cmd/issues"
 }
