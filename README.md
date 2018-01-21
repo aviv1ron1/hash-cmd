@@ -6,12 +6,15 @@ node command line tool for calculating hash values of strings or files
 
 ### Examples
 calculate the md5 hash of "abc"
+
 `$ hash md5 abc`
 
 calculate the sha1 hash of "a b c"
+
 `$ hash md5 "a b c"`
 
 calculate the sha256 hash of the file c:\somefile.txt
+
 `$ hash -i c:\somefile.txt sha256`
 
 ### Usage
@@ -25,12 +28,13 @@ calculate the sha256 hash of the file c:\somefile.txt
 
 ```shell
 -i, --input <file>  read data from file
--v, --verbose        verbose mode
--h, --help             output usage information
+-v, --verbose       verbose mode
+-h, --help          output usage information
 ```
 
 ### License
 [The MIT License](https://opensource.org/licenses/MIT "Copyright 2018 Aviv Ron - The MIT License")
+
 Copyright 2018 Aviv Ron
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
