@@ -1,0 +1,18 @@
+{
+  "name": "hash-cmd",
+  "version": "1.0.0",
+  "description": "command line tool for calculating hash values of strings or files",
+  "main": "hash.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "hash": "./hash.js"
+  },
+  "author": "aviv1ron1@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.11.0"
+  },
+  "devDependencies": {}
+}
