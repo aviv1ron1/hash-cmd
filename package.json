@@ -16,5 +16,6 @@
   },
   "devDependencies": {},
   "repository": "github:aviv1ron1/hash-cmd",
-  "bugs": "https://github.com/aviv1ron1/hash-cmd/issues"
+  "bugs": "https://github.com/aviv1ron1/hash-cmd/issues",
+  "keywords": ["hash", "md5", "sha", "sha1", "sha2", "digest", "command", "terminal", "sha256", "sha512", "crypto"]
 }
