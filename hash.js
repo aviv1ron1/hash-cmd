@@ -31,10 +31,6 @@ var makeAction = (hashType) => {
         }
         if (program.input) {
             if (checkFile(program.input)) {
-                if (data.length > 0 && data[0] != '') {
-                    console.error("cannot have both file input and data together");
-                    process.exit(1);
-                }
                 verb("calculating hash ", hashType, " from file: '", program.input, "'");
                 hash.setEncoding("hex");
                 const input = fs.createReadStream(program.input);

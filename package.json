@@ -1,6 +1,6 @@
 {
   "name": "hash-cmd",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "command line tool for calculating hash values of strings or files",
   "main": "hash.js",
   "scripts": {
@@ -17,5 +17,17 @@
   "devDependencies": {},
   "repository": "github:aviv1ron1/hash-cmd",
   "bugs": "https://github.com/aviv1ron1/hash-cmd/issues",
-  "keywords": ["hash", "md5", "sha", "sha1", "sha2", "digest", "command", "terminal", "sha256", "sha512", "crypto"]
+  "keywords": [
+    "hash",
+    "md5",
+    "sha",
+    "sha1",
+    "sha2",
+    "digest",
+    "command",
+    "terminal",
+    "sha256",
+    "sha512",
+    "crypto"
+  ]
 }
