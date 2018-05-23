@@ -26,7 +26,7 @@ var makeAction = (hashType) => {
         try {
             hash = crypto.createHash(hashType);
         } catch (err) {
-            console.error("unsupported hash type", hashType);
+            console.error("unsupported hash type %s,\nsupported hash types include %j", hashType, crypto.getHashes());
             process.exit(1);
         }
         if (program.input) {
@@ -40,11 +40,7 @@ var makeAction = (hashType) => {
                 });
             }
         } else {
-            if (data.length == 0) {
-                console.log("data is required");
-                process.exit(1);
-            }
-            if (Array.isArray(data)) {
+            if (data.length && Array.isArray(data)) {
                 verb("data is array ", data);
                 data.splice(1, 1);
                 data = data.join(" ");
@@ -63,7 +59,7 @@ program
     .option("-v, --verbose", "verbose mode")
     .arguments('<hash> [data]')
     .action((h, data) => {
-        makeAction(h)(data); //.slice(0, data.length - 1).join(" "));
+        makeAction(h)(data || ""); //.slice(0, data.length - 1).join(" "));
     }).on('--help', () => {
         console.log('');
         console.log('  Examples:');
