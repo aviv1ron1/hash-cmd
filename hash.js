@@ -67,6 +67,8 @@ program
         console.log('    calculate md5 of "abc"                      $ hash md5 abc');
         console.log('    calculate sha1 of "a b c"                   $ hash sha1 "a b c"');
         console.log('    calculate sha256 of the file c:\\somefile    $ hash -i c:\\somefile sha256');
+        console.log('    calculate md5 of an empty string            $ hash md5');
+
         console.log('');
     });
 
