@@ -26,15 +26,11 @@ var makeAction = (hashType) => {
         try {
             hash = crypto.createHash(hashType);
         } catch (err) {
-            console.error("unsupported hash type", hashType);
+            console.error("unsupported hash type %s,\nsupported hash types include %j", hashType, crypto.getHashes());
             process.exit(1);
         }
         if (program.input) {
             if (checkFile(program.input)) {
-                if (data.length > 0 && data[0] != '') {
-                    console.error("cannot have both file input and data together");
-                    process.exit(1);
-                }
                 verb("calculating hash ", hashType, " from file: '", program.input, "'");
                 hash.setEncoding("hex");
                 const input = fs.createReadStream(program.input);
@@ -44,11 +40,7 @@ var makeAction = (hashType) => {
                 });
             }
         } else {
-            if (data.length == 0) {
-                console.log("data is required");
-                process.exit(1);
-            }
-            if (Array.isArray(data)) {
+            if (data.length && Array.isArray(data)) {
                 verb("data is array ", data);
                 data.splice(1, 1);
                 data = data.join(" ");
@@ -67,7 +59,7 @@ program
     .option("-v, --verbose", "verbose mode")
     .arguments('<hash> [data]')
     .action((h, data) => {
-        makeAction(h)(data); //.slice(0, data.length - 1).join(" "));
+        makeAction(h)(data || ""); //.slice(0, data.length - 1).join(" "));
     }).on('--help', () => {
         console.log('');
         console.log('  Examples:');
@@ -75,6 +67,8 @@ program
         console.log('    calculate md5 of "abc"                      $ hash md5 abc');
         console.log('    calculate sha1 of "a b c"                   $ hash sha1 "a b c"');
         console.log('    calculate sha256 of the file c:\\somefile    $ hash -i c:\\somefile sha256');
+        console.log('    calculate md5 of an empty string            $ hash md5');
+
         console.log('');
     });
 
